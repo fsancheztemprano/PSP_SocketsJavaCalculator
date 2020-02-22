@@ -9,15 +9,14 @@ import java.util.concurrent.Executors;
 
 public class Server extends Thread {
 
-    String hostname = "localhost";
-    int port = 5555;
-    boolean active = false;
-    ServerSocket serverSocket;
-    ExecutorService executorService = Executors.newFixedThreadPool(4);
+    private String hostname = "localhost";
+    private int port = 5555;
+    private boolean active = false;
+    private final ExecutorService executorService = Executors.newFixedThreadPool(4);
 
     public Server(String hostname, int port) {
         this.hostname = hostname;
-        this.port = port;
+        this.port     = port;
     }
 
     public Server() {
@@ -26,13 +25,13 @@ public class Server extends Thread {
     @Override
     public void run() {
         try {
-            serverSocket = new ServerSocket();
-            InetSocketAddress inetSocketAddress = new InetSocketAddress(hostname,port);
+            ServerSocket serverSocket = new ServerSocket();
+            InetSocketAddress inetSocketAddress = new InetSocketAddress(hostname, port);
             serverSocket.bind(inetSocketAddress);
             System.out.println("bind correcto " + inetSocketAddress);
             active = true;
-            while(active){
-                Socket clientSocket = null;
+            while (active) {
+                Socket clientSocket;
                 try {
                     clientSocket = serverSocket.accept();
                     ServerWorker serverWorker = new ServerWorker(clientSocket);
