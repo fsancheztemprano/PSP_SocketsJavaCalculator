@@ -12,8 +12,8 @@ public class ClientUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setMinHeight(500);
-        primaryStage.setMinWidth(500);
+//        primaryStage.setMinHeight(500);
+//        primaryStage.setMinWidth(500);
         Pane root = FXMLLoader.load(getClass().getResource("/Calculadora.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
